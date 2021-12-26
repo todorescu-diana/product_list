@@ -9,6 +9,8 @@ import {
 
 import PropTypes from 'prop-types';
 
+import FavouriteButton from './FavouriteButton';
+
 const styles = StyleSheet.create({
     card: {
         backgroundColor: '#fff',
@@ -20,21 +22,28 @@ const styles = StyleSheet.create({
         marginTop: 5,
         marginBottom: 5,
       },
+      cardHeaderHolder: {
+        flexDirection: 'row',
+        alignItems: 'stretch',
+        //backgroundColor: 'black'
+      },
       cardHeader: {
-        flex: 0.5,
-        //backgroundColor: 'red',
+        //backgroundColor: 'pink',
         paddingTop: 20,
         flexDirection: 'column',
         justifyContent: 'space-evenly',
+        width:'30%',
       },
       title: {
         //backgroundColor: 'red',
-        width: '70%',
+        //width: '30%',
         fontSize: 15,
         fontWeight: '300',
         textAlign: 'left',
       },
       price: {
+        //backgroundColor: 'red', 
+        //width: '30%',
         fontWeight: '300',
         fontSize: 15,
         color: '#bdbdbd',
@@ -54,8 +63,13 @@ const styles = StyleSheet.create({
         borderWidth:2,
         //borderColor:'#d35647',
         resizeMode:'contain',
-        
       },
+      favouriteButton: {  
+        paddingTop: 20,
+        alignItems: 'flex-end',
+        width: '70%',
+        //backgroundColor: 'yellow',
+      }
 });
 
 export default function ProductCard({product}) {
@@ -75,12 +89,18 @@ export default function ProductCard({product}) {
                 }}></Image>
                 </View>
             </View>
+            <View style = {styles.cardHeaderHolder}> 
                 <View style = {styles.cardHeader}>
-                <View style = {styles.title}>
-                    <Text style = {{fontWeight :'bold'}}>{product.title}</Text>
+                    <View style = {styles.title}>
+                        <Text style = {{fontWeight :'bold'}}>{product.title}</Text>
+                    </View>
+                    <View style = {styles.price}>
+                        <Text >${product.price}</Text>
+                    </View>
                 </View>
-                 <View style = {styles.price}>
-                    <Text >${product.price}</Text>
+                <View style = {styles.favouriteButton}>
+                <FavouriteButton>
+                </FavouriteButton>
                 </View>
             </View>
         </View>

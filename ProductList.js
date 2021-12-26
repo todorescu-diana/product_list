@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
     require('./assets/images/1.jpg'),
     require('./assets/images/2.jpg'),
     require('./assets/images/3.jpg'),
-    require('./assets/images/4.jpg'),
+    require('./assets/images/4.jpg')
   ];
 
 export default class ProductList extends Component {
