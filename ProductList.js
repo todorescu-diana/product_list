@@ -55,17 +55,25 @@ const styles = StyleSheet.create({
     );
   };
 
+  const IMAGES = [
+    require('./assets/images/1.jpg'),
+    require('./assets/images/2.jpg'),
+    require('./assets/images/3.jpg'),
+    require('./assets/images/4.jpg'),
+  ];
+
 export default class ProductList extends Component {
 
     state = {
-        products: []
+        products: [],
+        images: IMAGES
     }
 
     componentDidMount() {
-        const products = require('./db.json').products;
+        const products = require('./db.json').products
+        .map(ph => ({...ph, image: IMAGES[ph.id]}));
     
         this.setState({ products });
-        console.log(products);
     }
 
     render() {
@@ -76,7 +84,7 @@ export default class ProductList extends Component {
         key = 'flatlist'
         data = {this.state.products}
         renderItem = {({ item }) => <ProductCard product = {item}/>}
-        keyExtractpr = {item => item.id}
+        keyExtractor = {item => item.id}
         ListHeaderComponent = {ListHeader}
         />
         );

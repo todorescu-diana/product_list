@@ -3,22 +3,22 @@
       {
         "title": "title1",
         "price": "price1",
-        "id": "05dafc66-bd91-43a0-a752-4dc40f039144"
+        "id": "0"
       },
       {
         "title": "title2",
         "price": "price2",
-        "id": "05da3c66-bd91-43a0-a752-4dc40f039144"
+        "id": "1"
       },
       {
         "title": "title3",
         "price": "price3",
-        "id": "05dafc66-rd91-43a0-a752-4dc40f039144"
+        "id": "2"
       },
       {
         "title": "title4",
         "price": "price4",
-        "id": "05dafc66-bd91-43a0-a752-4dc400039144"
+        "id": "3"
       }
     ]
   }
