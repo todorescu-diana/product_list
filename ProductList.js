@@ -58,6 +58,10 @@ export default class ProductList extends Component {
         this.props.navigation.navigate('cart');
     }
 
+    handleGoToFavourites = () => {
+        this.props.navigation.navigate('favourites');
+    }
+
     render() {
         return [
         <FlatList
@@ -74,7 +78,14 @@ export default class ProductList extends Component {
             onPress = {this.handleGoToCart}
             buttonColor = "#242820"
             renderIcon={() => (<Icon size={24} color="white" name="shoppingcart"/>)}
-            />
+        />,
+        <ActionButton
+            key = "fab"
+            onPress = {this.handleGoToFavourites}
+            buttonColor = "#242820"
+            renderIcon={() => (<Icon size={24} color="white" name="hearto"/>)}
+            offsetX = {100}
+        />,
         ];
     }
 }

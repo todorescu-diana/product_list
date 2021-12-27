@@ -23,17 +23,17 @@ const styles = StyleSheet.create({
       },
   });
 
-  const MyCartHeader = () => {
+  const FavouritesHeader = () => {
     return (
       <View style={styles.header}>
         <Text style={styles.text}>
-            My Cart
+            Favourites
         </Text>
       </View>
     );
   };
 
-export default class MyCart extends Component {
+export default class Favourites extends Component {
     handleAddPress = () => {
         this.props.navigation.navigate('list');
     }
@@ -43,7 +43,7 @@ export default class MyCart extends Component {
             <FlatList
             numColumns={2}
             style = {styles.list}
-            ListHeaderComponent = {MyCartHeader}
+            ListHeaderComponent = {FavouritesHeader}
             />,
                 <ActionButton
                     onPress={this.handleAddPress}
