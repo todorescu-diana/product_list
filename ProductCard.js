@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {
     Text,
     View,
@@ -25,25 +25,19 @@ const styles = StyleSheet.create({
       cardHeaderHolder: {
         flexDirection: 'row',
         alignItems: 'stretch',
-        //backgroundColor: 'black'
       },
       cardHeader: {
-        //backgroundColor: 'pink',
         paddingTop: 20,
         flexDirection: 'column',
         justifyContent: 'space-evenly',
         width:'30%',
       },
       title: {
-        //backgroundColor: 'red',
-        //width: '30%',
         fontSize: 15,
         fontWeight: '300',
         textAlign: 'left',
       },
       price: {
-        //backgroundColor: 'red', 
-        //width: '30%',
         fontWeight: '300',
         fontSize: 15,
         color: '#bdbdbd',
@@ -55,24 +49,24 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         paddingLeft: 5,
         paddingRight: 5,
-        //backgroundColor: 'black',
       },
       photo: {
-        //backgroundColor: 'red', 
         flex: 1,
         borderWidth:2,
-        //borderColor:'#d35647',
         resizeMode:'contain',
       },
       favouriteButton: {  
         paddingTop: 20,
         alignItems: 'flex-end',
         width: '70%',
-        //backgroundColor: 'yellow',
       }
 });
 
 export default function ProductCard({product}) {
+
+    //useEffect(() => {
+      //  console.log(product.favourite);
+    //});
 
     const win = Dimensions.get('window');
     const ratio = win.width/3098;
@@ -99,7 +93,7 @@ export default function ProductCard({product}) {
                     </View>
                 </View>
                 <View style = {styles.favouriteButton}>
-                <FavouriteButton>
+                <FavouriteButton product = {product}>
                 </FavouriteButton>
                 </View>
             </View>

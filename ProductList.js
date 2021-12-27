@@ -49,7 +49,7 @@ export default class ProductList extends Component {
 
     componentDidMount() {
         const products = require('./db.json').products
-        .map(ph => ({...ph, image: IMAGES[ph.id]}));
+        .map(p => ({...p, image: IMAGES[p.id]}));
     
         this.setState({ products });
     }
@@ -80,7 +80,7 @@ export default class ProductList extends Component {
             renderIcon={() => (<Icon size={24} color="white" name="shoppingcart"/>)}
         />,
         <ActionButton
-            key = "fab"
+            key = "fab1"
             onPress = {this.handleGoToFavourites}
             buttonColor = "#242820"
             renderIcon={() => (<Icon size={24} color="white" name="hearto"/>)}

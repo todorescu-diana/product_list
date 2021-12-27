@@ -1,13 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Pressable, StyleSheet } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import  Animated, { useSharedValue, useAnimatedStyle, interpolate, withSpring } from 'react-native-reanimated';
 import Extrapolate from 'react-native-reanimated';
 
-export default function FavouriteButton() {
-    //const [liked, setLiked] = useState(false);
-    
-        //Pressable onPress={() => setLiked((isLiked) => !isLiked)}>
+/*
+export default function FavouriteButton({product}) {
+
         const liked = useSharedValue(0);
 
         const outlineStyle = useAnimatedStyle(() => {
@@ -26,9 +25,14 @@ export default function FavouriteButton() {
               opacity: liked.value,
             };
           });
+
+        function handleFavouritePress () {
+            liked.value = withSpring(liked.value ? 0 : 1);
+            product.favourite = 1;
+        }
       
         return (
-          <Pressable onPress={() => (liked.value = withSpring(liked.value ? 0 : 1))}>
+          <Pressable onPress={handleFavouritePress}>
             <Animated.View style={[StyleSheet.absoluteFillObject, outlineStyle]}>
               <MaterialCommunityIcons
                 name={"heart-outline"}
@@ -42,4 +46,31 @@ export default function FavouriteButton() {
             </Animated.View>
           </Pressable>
         );
+  };
+*/
+
+//FOR DEBUGGING - merge mai repede
+  export default function FavouriteButton ({product}) {
+    const [liked, setLiked] = useState(false);
+
+    useEffect(() => {
+      console.log(product);
+    });
+
+    function handleFavouritePress ()  {
+        () => setLiked((isLiked) => !isLiked);
+        console.log("check1");
+        console.log(product);
+        //product.favourite = 1;
+    }
+  
+    return (
+      <Pressable onPress={handleFavouritePress}>
+        <MaterialCommunityIcons
+          name={liked ? "heart" : "heart-outline"}
+          size={32}
+          color={liked ? "red" : "black"}
+        />
+      </Pressable>
+    );
   };
