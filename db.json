@@ -4,25 +4,25 @@
         "title": "title1",
         "price": "price1",
         "id": "0",
-        "favourite": 0
+        "favourite": false
       },
       {
         "title": "title2",
         "price": "price2",
         "id": "1",
-        "favourite": 0
+        "favourite": false
       },
       {
         "title": "title3",
         "price": "price3",
         "id": "2",
-        "favourite": 0
+        "favourite": false
       },
       {
         "title": "title4",
         "price": "price4",
         "id": "3",
-        "favourite": 0
+        "favourite": false
       }
     ]
   }

@@ -1,8 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { Pressable, StyleSheet } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import  Animated, { useSharedValue, useAnimatedStyle, interpolate, withSpring } from 'react-native-reanimated';
-import Extrapolate from 'react-native-reanimated';
+import Animated, {
+  useSharedValue,
+  useAnimatedStyle,
+  interpolate,
+  withSpring,
+} from "react-native-reanimated";
+import Extrapolate from "react-native-reanimated";
+import ProductList from "./ProductList";
 
 /*
 export default function FavouriteButton({product}) {
@@ -28,7 +34,7 @@ export default function FavouriteButton({product}) {
 
         function handleFavouritePress () {
             liked.value = withSpring(liked.value ? 0 : 1);
-            product.favourite = 1;
+            product.favourite = !product.favourite;
         }
       
         return (
@@ -50,27 +56,24 @@ export default function FavouriteButton({product}) {
 */
 
 //FOR DEBUGGING - merge mai repede
-  export default function FavouriteButton ({product}) {
-    const [liked, setLiked] = useState(false);
+export default function FavouriteButton({ products, handler, product }) {
+  const [liked, setLiked] = useState(false);
 
-    useEffect(() => {
-      console.log(product);
-    });
+  function handleFavouritePress() {
+    () => setLiked((isLiked) => !isLiked);
+    console.log("check1");
+    product.favourite = !product.favourite;
+    handler({...products, product});
+    //console.log(product);
+  }
 
-    function handleFavouritePress ()  {
-        () => setLiked((isLiked) => !isLiked);
-        console.log("check1");
-        console.log(product);
-        //product.favourite = 1;
-    }
-  
-    return (
-      <Pressable onPress={handleFavouritePress}>
-        <MaterialCommunityIcons
-          name={liked ? "heart" : "heart-outline"}
-          size={32}
-          color={liked ? "red" : "black"}
-        />
-      </Pressable>
-    );
-  };
+  return (
+    <Pressable onPress={handleFavouritePress}>
+      <MaterialCommunityIcons
+        name={liked ? "heart" : "heart-outline"}
+        size={32}
+        color={liked ? "red" : "black"}
+      />
+    </Pressable>
+  );
+}
