@@ -4,6 +4,7 @@ import { Text, View, StyleSheet, Image, Dimensions } from "react-native";
 import PropTypes from "prop-types";
 
 import FavouriteButton from "./FavouriteButton";
+import AddToCartButton from "./AddToCartButton";
 
 const styles = StyleSheet.create({
   card: {
@@ -19,23 +20,20 @@ const styles = StyleSheet.create({
   cardHeaderHolder: {
     flexDirection: "row",
     alignItems: "stretch",
+    margin: 5
   },
   cardHeader: {
     paddingTop: 20,
     flexDirection: "column",
     justifyContent: "space-evenly",
-    width: "30%",
+    width: "50%",
   },
   title: {
-    fontSize: 15,
-    fontWeight: "300",
-    textAlign: "left",
+    textAlign: "left"
   },
   price: {
-    fontWeight: "300",
-    fontSize: 15,
     color: "#bdbdbd",
-    textAlign: "right",
+    textAlign: "right"
   },
   photoContainer: {
     flex: 1,
@@ -52,7 +50,7 @@ const styles = StyleSheet.create({
   favouriteButton: {
     paddingTop: 20,
     alignItems: "flex-end",
-    width: "70%",
+    width: "50%",
   },
 });
 
@@ -67,7 +65,7 @@ export default function ProductCard({ products, handler, product }) {
           <Image
             source={product.image}
             style={{
-              height: 900 * ratio,
+              height: 1500 * ratio,
               width: "100%",
             }}
           ></Image>
@@ -76,14 +74,23 @@ export default function ProductCard({ products, handler, product }) {
       <View style={styles.cardHeaderHolder}>
         <View style={styles.cardHeader}>
           <View style={styles.title}>
-            <Text style={{ fontWeight: "bold" }}>{product.title}</Text>
+            <Text style={{ fontSize: 20, fontWeight: "bold" }}>{product.title}</Text>
           </View>
           <View style={styles.price}>
-            <Text>${product.price}</Text>
+            <Text style={{ fontSize: 20}}>${product.price}</Text>
           </View>
         </View>
         <View style={styles.favouriteButton}>
-          <FavouriteButton products = {products} handler = {handler} product={product}></FavouriteButton>
+          <FavouriteButton
+            products={products}
+            handler={handler}
+            product={product}
+          ></FavouriteButton>
+          <AddToCartButton
+            products={products}
+            handler={handler}
+            product={product}
+          ></AddToCartButton>
         </View>
       </View>
     </View>

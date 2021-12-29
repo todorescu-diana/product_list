@@ -1,8 +1,9 @@
-import React, { Component, useEffect, useState } from "react";
+import React, { Component, useEffect, useState, useContext } from "react";
 import { FlatList, StyleSheet, Text, View } from "react-native";
 import ProductCard from "./ProductCard";
 import ActionButton from "react-native-action-button";
 import Icon from "react-native-vector-icons/AntDesign";
+import { StateContext } from "./App";
 
 const IMAGES = [
   require("./assets/images/1.jpg"),
@@ -30,13 +31,13 @@ const styles = StyleSheet.create({
   },
 });
 
-function FavouritesHeader () {
+function FavouritesHeader() {
   return (
     <View style={styles.header}>
       <Text style={styles.text}>Favourites</Text>
     </View>
   );
-};
+}
 /*
 export default class Favourites extends Component {
   state = {
@@ -77,40 +78,65 @@ export default class Favourites extends Component {
   }
 }*/
 
-export default function Favourites ({navigation}) {
-    [favourites, setFavourites] = useState({
-      products: [],
-    });
-  
-    useEffect(() => {
-      const products = require("./db.json").products.filter((p) => p.favourite == true).map((p) => ({
-        ...p,
-        image: IMAGES[p.id],
-      }));
-  
-      setFavourites({ products });
-    }, []);
-  
-    handleAddPress = () => {
-      navigation.navigate("ProductList");
-    };
-  
-      return [
-        <FlatList
-          key="flatlist1"
-          numColumns={2}
-          style={styles.list}
-          data={state.products}
-          renderItem={({ item }) => <ProductCard product={item} />}
-          keyExtractor={(item) => item.id}
-          ListHeaderComponent={FavouritesHeader}
-        />,
-        <ActionButton
-          onPress={handleAddPress}
-          renderIcon={() => <Icon size={24} color="white" name="caretleft" />}
-          buttonColor="#242820"
-          key="fab"
-        ></ActionButton>,
-      ];
+function ListEmptyComponent() {
+  return <View />;
+}
+
+export default function Favourites({ navigation }) {
+  const { products, setProducts } = useContext(StateContext);
+
+  const [favourites, setFavourites] = useState([]);
+
+  useEffect(() => {
+    const fav = products.filter((p) => p.favourite == true);
+    if (fav.length == 0) {
+      setFavourites([
+        {
+          title: "-",
+          price: "-",
+          id: "-1",
+          favourite: false,
+          cart: false,
+        },
+      ]);
+    } else {
+      setFavourites(fav);
+    }
+  }, []);
+
+  //useEffect(() => {
+  //console.log("FAVOURITES", favourites);
+  //}, [favourites]);
+
+  function handleAddPress() {
+    navigation.navigate("ProductList");
   }
-  
+
+  function handler() {
+    const products_aux = [...products];
+    setProducts(products_aux);
+  }
+
+  return [
+    <FlatList
+      key="flatlist1"
+      style={styles.list}
+      data={favourites}
+      renderItem={({ item }) =>
+        item.id != "-1" ? (
+          <ProductCard product={item} products={products} handler={handler} />
+        ) : (
+          ListEmptyComponent
+        )
+      }
+      keyExtractor={(item) => item.id}
+      ListHeaderComponent={FavouritesHeader}
+    />,
+    <ActionButton
+      onPress={handleAddPress}
+      renderIcon={() => <Icon size={24} color="white" name="caretleft" />}
+      buttonColor="#242820"
+      key="fab"
+    ></ActionButton>,
+  ];
+}

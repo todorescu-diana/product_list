@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Pressable, StyleSheet } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import Animated, {
@@ -9,6 +9,7 @@ import Animated, {
 } from "react-native-reanimated";
 import Extrapolate from "react-native-reanimated";
 import ProductList from "./ProductList";
+import { StateContext } from "./App";
 
 /*
 export default function FavouriteButton({product}) {
@@ -56,23 +57,21 @@ export default function FavouriteButton({product}) {
 */
 
 //FOR DEBUGGING - merge mai repede
-export default function FavouriteButton({ products, handler, product }) {
-  const [liked, setLiked] = useState(false);
+export default function FavouriteButton({ handler, product }) {
+  const { products, setProducts } = useContext(StateContext);
 
-  function handleFavouritePress() {
-    () => setLiked((isLiked) => !isLiked);
-    console.log("check1");
+  function handleFavouriteButton() {
+    //console.log("check1");
     product.favourite = !product.favourite;
-    handler({...products, product});
-    //console.log(product);
+    handler();
   }
 
   return (
-    <Pressable onPress={handleFavouritePress}>
+    <Pressable onPress={handleFavouriteButton}>
       <MaterialCommunityIcons
-        name={liked ? "heart" : "heart-outline"}
+        name={product.favourite ? "heart" : "heart-outline"}
         size={32}
-        color={liked ? "red" : "black"}
+        color={product.favourite ? "red" : "black"}
       />
     </Pressable>
   );

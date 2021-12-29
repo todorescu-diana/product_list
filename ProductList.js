@@ -1,15 +1,9 @@
-import React, { Component, useEffect, useState } from "react";
+import React, { Component, useEffect, useState, useContext } from "react";
 import { FlatList, StyleSheet, Text, View } from "react-native";
 import ProductCard from "./ProductCard";
 import ActionButton from "react-native-action-button";
 import Icon from "react-native-vector-icons/AntDesign";
-
-const IMAGES = [
-  require("./assets/images/1.jpg"),
-  require("./assets/images/2.jpg"),
-  require("./assets/images/3.jpg"),
-  require("./assets/images/4.jpg"),
-];
+import { StateContext } from "./App";
 
 const styles = StyleSheet.create({
   list: {
@@ -30,13 +24,13 @@ const styles = StyleSheet.create({
   },
 });
 
-function ListHeader (){
+function ListHeader() {
   return (
     <View style={styles.header}>
       <Text style={styles.text}>Product List</Text>
     </View>
   );
-};
+}
 /*
 export default class ProductList extends Component {
   state = {
@@ -104,57 +98,49 @@ export default class ProductList extends Component {
   }
 }
 */
-export default function ProductList ({navigation}) {
-    [state,setState] = useState({
-      products: [],
-    });
-  
-    useEffect(() => {
-      const products = require("./db.json").products.map((p) => ({
-        ...p,
-        image: IMAGES[p.id],
-      }));
-  
-      setState({ products });
-    }, []);
-  
-    handleGoToCart = () => {
-      navigation.navigate("MyCart");
-    };
-  
-    handleGoToFavourites = () => {
-      navigation.navigate("Favourites");
-    };
-  
-    function handler(products) {
-      setState(
-        products
-      );
-    }
+export default function ProductList({ navigation }) {
+  const { products, setProducts } = useContext(StateContext);
 
-      return [
-        <FlatList
-          numColumns={2}
-          style={styles.list}
-          key="flatlist"
-          data={state.products}
-          renderItem={({ item }) => <ProductCard products = {this.state.products} handler = {this.handler} product={item} />}
-          keyExtractor={(item) => item.id}
-          ListHeaderComponent={ListHeader}
-        />,
-        <ActionButton
-          key="fab"
-          onPress={handleGoToCart}
-          buttonColor="#242820"
-          renderIcon={() => <Icon size={24} color="white" name="shoppingcart" />}
-        />,
-        <ActionButton
-          key="fab1"
-          onPress={handleGoToFavourites}
-          buttonColor="#242820"
-          renderIcon={() => <Icon size={24} color="white" name="hearto" />}
-          offsetX={100}
-        />
-      ];
+  //useEffect(() => {
+    //console.log("NEW", products);
+  //}, [products]);
+
+  handleGoToCart = () => {
+    navigation.navigate("MyCart");
+  };
+
+  handleGoToFavourites = () => {
+    navigation.navigate("Favourites");
+  };
+
+  function handler() {
+    const products_aux = [...products];
+    setProducts(products_aux);
   }
-  
+
+  return [
+    <FlatList
+      style={styles.list}
+      key="flatlist"
+      data={products}
+      renderItem={({ item }) => (
+        <ProductCard handler={handler} product={item} />
+      )}
+      keyExtractor={(item) => item.id}
+      ListHeaderComponent={ListHeader}
+    />,
+    <ActionButton
+      key="fab"
+      onPress={handleGoToCart}
+      buttonColor="#242820"
+      renderIcon={() => <Icon size={24} color="white" name="shoppingcart" />}
+    />,
+    <ActionButton
+      key="fab1"
+      onPress={handleGoToFavourites}
+      buttonColor="#242820"
+      renderIcon={() => <Icon size={24} color="white" name="hearto" />}
+      offsetX={100}
+    />,
+  ];
+}
