@@ -74,9 +74,9 @@ export default function App() {
       .catch((err) => console.log(err));
   }, []);
 
-  useEffect(() => {
-    console.log("CHANGED ", products);
-  }, [products]);
+  //useEffect(() => {
+    //console.log("CHANGED ", products);
+  //}, [products]);
 
   return (
     <StateContext.Provider value={{ products, setProducts }}>

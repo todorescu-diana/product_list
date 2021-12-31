@@ -101,6 +101,7 @@ export default class ProductList extends Component {
 */
 export default function ProductList({ navigation }) {
   const { products, setProducts } = useContext(StateContext);
+  //const [list, setList] = useState([]);
 
   //useEffect(() => {
   //console.log("NEW", products);
@@ -113,6 +114,12 @@ export default function ProductList({ navigation }) {
   handleGoToFavourites = () => {
     navigation.navigate("Favourites");
   };
+/*
+  useEffect(() => {
+    setList(products);
+  }, [products]);
+  */
+
   /*
   function handler() {
     const products_aux = [...products];

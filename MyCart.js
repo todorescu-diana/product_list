@@ -4,7 +4,7 @@ import ProductCard from "./ProductCard";
 import ActionButton from "react-native-action-button";
 import Icon from "react-native-vector-icons/AntDesign";
 import { StateContext } from "./App";
-import { saveProduct } from "./api";
+import { saveProduct, getProducts } from "./api";
 
 const styles = StyleSheet.create({
   list: {

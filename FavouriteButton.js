@@ -12,10 +12,15 @@ import ProductList from "./ProductList";
 import { StateContext } from "./App";
 import { getProducts } from "./api";
 
-/*
-export default function FavouriteButton({product}) {
 
-        const liked = useSharedValue(0);
+export default function FavouriteButton({ handler, product }) {
+
+        const { products, setProducts } = useContext(StateContext);
+        const liked = useSharedValue((product.favourite == false)? 0 : 1);
+
+        useEffect(() => {
+            liked.value = (product.favourite == false)? 0 : 1;
+        },[products]);
 
         const outlineStyle = useAnimatedStyle(() => {
           return {
@@ -34,13 +39,18 @@ export default function FavouriteButton({product}) {
             };
           });
 
-        function handleFavouritePress () {
+        function handleFavouriteButton () {
             liked.value = withSpring(liked.value ? 0 : 1);
             product.favourite = !product.favourite;
+            handler({ product });
+            getProducts()
+            .then((products) => setProducts(products))
+            .catch((err) => console.log(err));
+            //console.log("PROD NEW : ", products);
         }
       
         return (
-          <Pressable onPress={handleFavouritePress}>
+          <Pressable onPress={handleFavouriteButton} style={{marginRight: 10}}>
             <Animated.View style={[StyleSheet.absoluteFillObject, outlineStyle]}>
               <MaterialCommunityIcons
                 name={"heart-outline"}
@@ -55,8 +65,8 @@ export default function FavouriteButton({product}) {
           </Pressable>
         );
   };
-*/
 
+/*
 //FOR DEBUGGING - merge mai repede
 export default function FavouriteButton({ handler, product }) {
   const { products, setProducts } = useContext(StateContext);
@@ -79,4 +89,4 @@ export default function FavouriteButton({ handler, product }) {
       />
     </Pressable>
   );
-}
+}*/

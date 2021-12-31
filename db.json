@@ -13,7 +13,7 @@
       "price": "price2",
       "id": "1",
       "favourite": false,
-      "cart": false,
+      "cart": true,
       "image": 18
     },
     {
