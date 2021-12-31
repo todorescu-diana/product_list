@@ -4,6 +4,7 @@ import ProductCard from "./ProductCard";
 import ActionButton from "react-native-action-button";
 import Icon from "react-native-vector-icons/AntDesign";
 import { StateContext } from "./App";
+import { getProducts, saveProduct } from "./api";
 
 const styles = StyleSheet.create({
   list: {
@@ -102,7 +103,7 @@ export default function ProductList({ navigation }) {
   const { products, setProducts } = useContext(StateContext);
 
   //useEffect(() => {
-    //console.log("NEW", products);
+  //console.log("NEW", products);
   //}, [products]);
 
   handleGoToCart = () => {
@@ -112,11 +113,11 @@ export default function ProductList({ navigation }) {
   handleGoToFavourites = () => {
     navigation.navigate("Favourites");
   };
-
+  /*
   function handler() {
     const products_aux = [...products];
     setProducts(products_aux);
-  }
+  }*/
 
   return [
     <FlatList
@@ -124,7 +125,7 @@ export default function ProductList({ navigation }) {
       key="flatlist"
       data={products}
       renderItem={({ item }) => (
-        <ProductCard handler={handler} product={item} />
+        <ProductCard handler={saveProduct} product={item} />
       )}
       keyExtractor={(item) => item.id}
       ListHeaderComponent={ListHeader}

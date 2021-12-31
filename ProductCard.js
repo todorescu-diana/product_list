@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
   cardHeaderHolder: {
     flexDirection: "row",
     alignItems: "stretch",
-    margin: 5
+    margin: 5,
   },
   cardHeader: {
     paddingTop: 20,
@@ -29,11 +29,11 @@ const styles = StyleSheet.create({
     width: "50%",
   },
   title: {
-    textAlign: "left"
+    textAlign: "left",
   },
   price: {
     color: "#bdbdbd",
-    textAlign: "right"
+    textAlign: "right",
   },
   photoContainer: {
     flex: 1,
@@ -74,10 +74,12 @@ export default function ProductCard({ products, handler, product }) {
       <View style={styles.cardHeaderHolder}>
         <View style={styles.cardHeader}>
           <View style={styles.title}>
-            <Text style={{ fontSize: 20, fontWeight: "bold" }}>{product.title}</Text>
+            <Text style={{ fontSize: 20, fontWeight: "bold" }}>
+              {product.title}
+            </Text>
           </View>
           <View style={styles.price}>
-            <Text style={{ fontSize: 20}}>${product.price}</Text>
+            <Text style={{ fontSize: 20 }}>${product.price}</Text>
           </View>
         </View>
         <View style={styles.favouriteButton}>

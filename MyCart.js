@@ -4,6 +4,7 @@ import ProductCard from "./ProductCard";
 import ActionButton from "react-native-action-button";
 import Icon from "react-native-vector-icons/AntDesign";
 import { StateContext } from "./App";
+import { saveProduct } from "./api";
 
 const styles = StyleSheet.create({
   list: {
@@ -103,16 +104,16 @@ export default function MyCart({ navigation }) {
     } else {
       setCart(cart_aux);
     }
-  }, []);
+  }, [products]);
 
   function handleAddPress() {
     navigation.navigate("ProductList");
   }
-
+  /*
   function handler() {
     const products_aux = [...products];
     setProducts(products_aux);
-  }
+  }*/
 
   return [
     <FlatList
@@ -121,7 +122,11 @@ export default function MyCart({ navigation }) {
       data={cart}
       renderItem={({ item }) =>
         item.id != "-1" ? (
-          <ProductCard product={item} products={products} handler={handler} />
+          <ProductCard
+            product={item}
+            products={products}
+            handler={saveProduct}
+          />
         ) : (
           ListEmptyComponent
         )

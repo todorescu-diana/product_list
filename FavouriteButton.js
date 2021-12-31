@@ -10,6 +10,7 @@ import Animated, {
 import Extrapolate from "react-native-reanimated";
 import ProductList from "./ProductList";
 import { StateContext } from "./App";
+import { getProducts } from "./api";
 
 /*
 export default function FavouriteButton({product}) {
@@ -63,11 +64,14 @@ export default function FavouriteButton({ handler, product }) {
   function handleFavouriteButton() {
     //console.log("check1");
     product.favourite = !product.favourite;
-    handler();
+    handler({ product });
+    getProducts()
+      .then((products) => setProducts(products))
+      .catch((err) => console.log(err));
   }
 
   return (
-    <Pressable onPress={handleFavouriteButton}>
+    <Pressable onPress={handleFavouriteButton} style={{ padding: 10 }}>
       <MaterialCommunityIcons
         name={product.favourite ? "heart" : "heart-outline"}
         size={32}

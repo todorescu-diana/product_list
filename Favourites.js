@@ -4,6 +4,7 @@ import ProductCard from "./ProductCard";
 import ActionButton from "react-native-action-button";
 import Icon from "react-native-vector-icons/AntDesign";
 import { StateContext } from "./App";
+import { saveProduct } from "./api";
 
 const IMAGES = [
   require("./assets/images/1.jpg"),
@@ -102,7 +103,7 @@ export default function Favourites({ navigation }) {
     } else {
       setFavourites(fav);
     }
-  }, []);
+  }, [products]);
 
   //useEffect(() => {
   //console.log("FAVOURITES", favourites);
@@ -111,12 +112,12 @@ export default function Favourites({ navigation }) {
   function handleAddPress() {
     navigation.navigate("ProductList");
   }
-
+  /*
   function handler() {
     const products_aux = [...products];
     setProducts(products_aux);
   }
-
+*/
   return [
     <FlatList
       key="flatlist1"
@@ -124,7 +125,11 @@ export default function Favourites({ navigation }) {
       data={favourites}
       renderItem={({ item }) =>
         item.id != "-1" ? (
-          <ProductCard product={item} products={products} handler={handler} />
+          <ProductCard
+            product={item}
+            products={products}
+            handler={saveProduct}
+          />
         ) : (
           ListEmptyComponent
         )

@@ -8,6 +8,8 @@ import { createAppContainer } from "react-navigation";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 const Stack = createNativeStackNavigator();
+
+import { getProducts } from "./api";
 /*
 {
   'ProductList': ProductList,
@@ -49,22 +51,32 @@ export const StateContext = React.createContext({
 
 export default function App() {
   const [products, setProducts] = useState([]);
-
+  /*
   const IMAGES = [
     require("./assets/images/1.jpg"),
     require("./assets/images/2.jpg"),
     require("./assets/images/3.jpg"),
     require("./assets/images/4.jpg"),
-  ];
+  ];*/
 
-  useEffect(() => {
+  /*useEffect(() => {
     const productsReq = require("./db.json").products.map((p) => ({
       ...p,
       image: IMAGES[p.id],
     }));
 
     setProducts(productsReq);
+  }, []);*/
+
+  useEffect(() => {
+    getProducts()
+      .then((products) => setProducts(products))
+      .catch((err) => console.log(err));
   }, []);
+
+  useEffect(() => {
+    console.log("CHANGED ", products);
+  }, [products]);
 
   return (
     <StateContext.Provider value={{ products, setProducts }}>
