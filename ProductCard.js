@@ -5,6 +5,8 @@ import PropTypes from "prop-types";
 
 import FavouriteButton from "./FavouriteButton";
 import AddToCartButton from "./AddToCartButton";
+//import FastImage from 'react-native-fast-image';
+//import ExpoFastImage from 'expo-fast-image';
 
 const styles = StyleSheet.create({
   card: {

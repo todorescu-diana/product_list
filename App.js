@@ -3,8 +3,6 @@ import ProductList from "./ProductList";
 import MyCart from "./MyCart";
 import Favourites from "./Favourites";
 import { Component, useEffect, useState } from "react";
-import { createStackNavigator } from "react-navigation-stack";
-import { createAppContainer } from "react-navigation";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 const Stack = createNativeStackNavigator();

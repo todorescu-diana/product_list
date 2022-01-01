@@ -3,6 +3,7 @@ require File.join(File.dirname(`node --print "require.resolve('react-native/pack
 require File.join(File.dirname(`node --print "require.resolve('@react-native-community/cli-platform-ios/package.json')"`), "native_modules")
 
 platform :ios, '12.0'
+source 'https://github.com/CocoaPods/Specs.git'
 
 require 'json'
 podfile_properties = JSON.parse(File.read('./Podfile.properties.json')) rescue {}
@@ -23,6 +24,8 @@ target 'productlist' do
   # end
 
   pod 'RNReanimated', :path => '../node_modules/react-native-reanimated'
+
+  pod 'RNFastImage', :path => '../node_modules/react-native-fast-image'
 
   post_install do |installer|
     react_native_post_install(installer)
