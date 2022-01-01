@@ -1,8 +1,16 @@
 import React, { useContext } from "react";
-import { Pressable } from "react-native";
+import { Pressable, TouchableOpacity } from "react-native";
 import { Fontisto } from "@expo/vector-icons";
 import { StateContext } from "./App";
 import { getProducts } from "./api";
+import Animated, {
+  useSharedValue,
+  useAnimatedStyle,
+  interpolate,
+  withSpring,
+} from "react-native-reanimated";
+
+import TouchableScale from "react-native-touchable-scale";
 
 export default function AddToCartButton({ handler, product }) {
   const { products, setProducts } = useContext(StateContext);
@@ -17,7 +25,12 @@ export default function AddToCartButton({ handler, product }) {
   }
 
   return (
-    <Pressable style={{ padding: 10 }} onPress={handleAddToCartButton}>
+    <TouchableScale
+      style={{ padding: 10 }}
+      onPress={handleAddToCartButton}
+      activeScale={0.4}
+      tension={100}
+    >
       <Fontisto
         name={
           product.cart == false
@@ -25,9 +38,9 @@ export default function AddToCartButton({ handler, product }) {
             : "shopping-basket-remove"
         }
         size={26}
-        color={"black"}
+        color={product.cart == false ? "black" : "#4A5D54"}
       />
-    </Pressable>
+    </TouchableScale>
   );
 }
 

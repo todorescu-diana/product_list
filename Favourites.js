@@ -24,6 +24,11 @@ const styles = StyleSheet.create({
     margin: 10,
     backgroundColor: "rgba(0, 0, 0, 0)",
   },
+  footer: {
+    padding: 15,
+    margin: 50,
+    backgroundColor: "rgba(0, 0, 0, 0)",
+  },
   text: {
     textAlign: "center",
     color: "#080A05",
@@ -39,6 +44,10 @@ function FavouritesHeader() {
     </View>
   );
 }
+
+const FavouritesFooter = () => {
+  return <View style={styles.footer}></View>;
+};
 /*
 export default class Favourites extends Component {
   state = {
@@ -136,6 +145,7 @@ export default function Favourites({ navigation }) {
       }
       keyExtractor={(item) => item.id}
       ListHeaderComponent={FavouritesHeader}
+      ListFooterComponent={FavouritesFooter}
     />,
     <ActionButton
       onPress={handleAddPress}

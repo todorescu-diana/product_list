@@ -17,6 +17,11 @@ const styles = StyleSheet.create({
     margin: 10,
     backgroundColor: "rgba(0, 0, 0, 0)",
   },
+  footer: {
+    padding: 15,
+    margin: 50,
+    backgroundColor: "rgba(0, 0, 0, 0)",
+  },
   text: {
     textAlign: "center",
     color: "#080A05",
@@ -38,6 +43,10 @@ const MyCartHeader = () => {
       <Text style={styles.text}>My Cart</Text>
     </View>
   );
+};
+
+const MyCartFooter = () => {
+  return <View style={styles.footer}></View>;
 };
 /*
 export default class MyCart extends Component {
@@ -133,6 +142,7 @@ export default function MyCart({ navigation }) {
       }
       keyExtractor={(item) => item.id}
       ListHeaderComponent={MyCartHeader}
+      ListFooterComponent={MyCartFooter}
     />,
     <ActionButton
       onPress={handleAddPress}

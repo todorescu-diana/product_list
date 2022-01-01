@@ -10,11 +10,17 @@ const styles = StyleSheet.create({
   list: {
     flex: 1,
     paddingTop: 20,
+    paddingBottom: 90,
     backgroundColor: "#F0FCE2",
   },
   header: {
     padding: 20,
     margin: 10,
+    backgroundColor: "rgba(0, 0, 0, 0)",
+  },
+  footer: {
+    padding: 15,
+    margin: 50,
     backgroundColor: "rgba(0, 0, 0, 0)",
   },
   text: {
@@ -31,6 +37,10 @@ function ListHeader() {
       <Text style={styles.text}>Product List</Text>
     </View>
   );
+}
+
+function ListFooter() {
+  return <View style={styles.footer}></View>;
 }
 /*
 export default class ProductList extends Component {
@@ -114,7 +124,7 @@ export default function ProductList({ navigation }) {
   handleGoToFavourites = () => {
     navigation.navigate("Favourites");
   };
-/*
+  /*
   useEffect(() => {
     setList(products);
   }, [products]);
@@ -136,6 +146,7 @@ export default function ProductList({ navigation }) {
       )}
       keyExtractor={(item) => item.id}
       ListHeaderComponent={ListHeader}
+      ListFooterComponent={ListFooter}
     />,
     <ActionButton
       key="fab"

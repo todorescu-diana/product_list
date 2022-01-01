@@ -75,7 +75,7 @@ export default function App() {
   }, []);
 
   //useEffect(() => {
-    //console.log("CHANGED ", products);
+  //console.log("CHANGED ", products);
   //}, [products]);
 
   return (

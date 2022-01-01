@@ -13,7 +13,7 @@
       "price": "price2",
       "id": "1",
       "favourite": false,
-      "cart": true,
+      "cart": false,
       "image": 18
     },
     {
@@ -21,14 +21,16 @@
       "price": "price3",
       "id": "2",
       "favourite": false,
-      "cart": false
+      "cart": false,
+      "image": 19
     },
     {
       "title": "title4",
       "price": "price4",
       "id": "3",
       "favourite": false,
-      "cart": false
+      "cart": false,
+      "image": 20
     }
   ]
 }
