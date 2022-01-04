@@ -1,5 +1,12 @@
-import React, { useEffect } from "react";
-import { Text, View, StyleSheet, Image, Dimensions } from "react-native";
+import React, { useEffect, useState } from "react";
+import {
+  ActivityIndicator,
+  Text,
+  View,
+  StyleSheet,
+  Image,
+  Dimensions,
+} from "react-native";
 
 import PropTypes from "prop-types";
 
@@ -40,14 +47,15 @@ const styles = StyleSheet.create({
   photoContainer: {
     flex: 1,
     flexDirection: "row",
-    justifyContent: "space-between",
+    justifyContent: "center",
     paddingLeft: 5,
     paddingRight: 5,
   },
   photo: {
     flex: 1,
     borderWidth: 2,
-    resizeMode: "contain",
+    flexDirection: "row",
+    justifyContent: "center",
   },
   favouriteButton: {
     paddingTop: 20,
@@ -60,6 +68,8 @@ export default function ProductCard({ products, handler, product }) {
   const win = Dimensions.get("window");
   const ratio = win.width / 3098;
 
+  const [imageLoaded, setImageLoaded] = useState(false);
+
   return (
     <View style={styles.card}>
       <View style={styles.photoContainer}>
@@ -70,7 +80,21 @@ export default function ProductCard({ products, handler, product }) {
               height: 1500 * ratio,
               width: "100%",
             }}
+            onLoad={() => setImageLoaded(true)}
           ></Image>
+          {!imageLoaded && (
+            <View
+              style={{
+                flex: 1,
+                flexDirection: "row",
+                justifyContent: "center",
+                paddingRight: 322,
+                paddingTop: 5,
+              }}
+            >
+              <ActivityIndicator size="large" color="black" />
+            </View>
+          )}
         </View>
       </View>
       <View style={styles.cardHeaderHolder}>

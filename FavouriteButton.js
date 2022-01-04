@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Pressable, StyleSheet } from "react-native";
+import { LayoutAnimation, Pressable, StyleSheet } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import Animated, {
   useSharedValue,
@@ -29,6 +29,17 @@ export default function FavouriteButton({ handler, product }) {
       ],
     };
   });
+  const layoutAnimConfig = {
+    duration: 300,
+    update: {
+      type: LayoutAnimation.Types.easeInEaseOut,
+    },
+    delete: {
+      duration: 100,
+      type: LayoutAnimation.Types.easeInEaseOut,
+      property: LayoutAnimation.Properties.opacity,
+    },
+  };
 
   const fillStyle = useAnimatedStyle(() => {
     return {
@@ -45,6 +56,8 @@ export default function FavouriteButton({ handler, product }) {
       .then((products) => setProducts(products))
       .catch((err) => console.log(err));
     //console.log("PROD NEW : ", products);
+    if (product.favourite == false)
+      LayoutAnimation.configureNext(layoutAnimConfig);
   }
 
   return (

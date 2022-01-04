@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Pressable, TouchableOpacity } from "react-native";
+import { LayoutAnimation, Pressable, TouchableOpacity } from "react-native";
 import { Fontisto } from "@expo/vector-icons";
 import { StateContext } from "./App";
 import { getProducts } from "./api";
@@ -22,7 +22,19 @@ export default function AddToCartButton({ handler, product }) {
     getProducts()
       .then((products) => setProducts(products))
       .catch((err) => console.log(err));
+    if (product.cart == false) LayoutAnimation.configureNext(layoutAnimConfig);
   }
+  const layoutAnimConfig = {
+    duration: 300,
+    update: {
+      type: LayoutAnimation.Types.easeInEaseOut,
+    },
+    delete: {
+      duration: 100,
+      type: LayoutAnimation.Types.easeInEaseOut,
+      property: LayoutAnimation.Properties.opacity,
+    },
+  };
 
   return (
     <TouchableScale
