@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import ProductList from "./ProductList";
 import MyCart from "./MyCart";
 import Favourites from "./Favourites";
+import Search from "./Search";
 import { Component, useEffect, useState } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
@@ -87,6 +88,7 @@ export default function App() {
           <Stack.Screen name="ProductList" component={ProductList} />
           <Stack.Screen name="MyCart" component={MyCart} />
           <Stack.Screen name="Favourites" component={Favourites} />
+          <Stack.Screen name="Search" component={Search} />
         </Stack.Navigator>
       </NavigationContainer>
     </StateContext.Provider>

@@ -1,5 +1,5 @@
 import React, { Component, useEffect, useState, useContext } from "react";
-import { FlatList, StyleSheet, Text, View } from "react-native";
+import { FlatList, StyleSheet, Text, View, TextInput } from "react-native";
 import ProductCard from "./ProductCard";
 import ActionButton from "react-native-action-button";
 import Icon from "react-native-vector-icons/AntDesign";
@@ -109,6 +109,7 @@ export default class ProductList extends Component {
   }
 }
 */
+
 export default function ProductList({ navigation }) {
   const { products, setProducts } = useContext(StateContext);
   //const [list, setList] = useState([]);
@@ -123,6 +124,9 @@ export default function ProductList({ navigation }) {
 
   handleGoToFavourites = () => {
     navigation.navigate("Favourites");
+  };
+  handleGoToSearch = () => {
+    navigation.navigate("Search");
   };
   /*
   useEffect(() => {
@@ -151,15 +155,24 @@ export default function ProductList({ navigation }) {
     <ActionButton
       key="fab"
       onPress={handleGoToCart}
-      buttonColor="#242820"
+      buttonColor="#63736B"
       renderIcon={() => <Icon size={24} color="white" name="shoppingcart" />}
+      offsetX={90}
     />,
     <ActionButton
       key="fab1"
       onPress={handleGoToFavourites}
-      buttonColor="#242820"
+      buttonColor="#63736B"
       renderIcon={() => <Icon size={24} color="white" name="hearto" />}
-      offsetX={100}
+      offsetX={160}
+    />,
+    <ActionButton
+      key="fab2"
+      onPress={handleGoToSearch}
+      buttonColor="#63736B"
+      renderIcon={() => <Icon size={24} color="white" name="search1" />}
+      offsetX={90}
+      position="left"
     />,
   ];
 }

@@ -6,13 +6,6 @@ import Icon from "react-native-vector-icons/AntDesign";
 import { StateContext } from "./App";
 import { saveProduct } from "./api";
 
-const IMAGES = [
-  require("./assets/images/1.jpg"),
-  require("./assets/images/2.jpg"),
-  require("./assets/images/3.jpg"),
-  require("./assets/images/4.jpg"),
-];
-
 const styles = StyleSheet.create({
   list: {
     flex: 1,
@@ -150,8 +143,9 @@ export default function Favourites({ navigation }) {
     <ActionButton
       onPress={handleAddPress}
       renderIcon={() => <Icon size={24} color="white" name="caretleft" />}
-      buttonColor="#242820"
+      buttonColor="#63736B"
       key="fab"
+      offsetX={160}
     ></ActionButton>,
   ];
 }

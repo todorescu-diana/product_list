@@ -147,8 +147,9 @@ export default function MyCart({ navigation }) {
     <ActionButton
       onPress={handleAddPress}
       renderIcon={() => <Icon size={24} color="white" name="caretleft" />}
-      buttonColor="#242820"
+      buttonColor="#63736B"
       key="fab"
+      offsetX={160}
     ></ActionButton>,
   ];
 }
