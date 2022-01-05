@@ -17,7 +17,9 @@ import AddToCartButton from "./AddToCartButton";
 
 const styles = StyleSheet.create({
   card: {
-    backgroundColor: "#fff",
+    //backgroundColor: "#fff",
+    backgroundColor: "#FFFEF7",
+    borderRadius: 20,
     flex: 1,
     padding: 10,
     paddingTop: 20,

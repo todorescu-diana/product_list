@@ -8,7 +8,7 @@ const api = manifest.packagerOpts.dev
 
 //const url = `http://${api}/products`;
 
-const url = "http://2fd7-89-136-44-30.ngrok.io/products";
+const url = "http://e039-89-136-44-30.ngrok.io/products";
 
 export function getProducts() {
   const IMAGES = [

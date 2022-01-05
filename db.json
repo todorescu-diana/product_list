@@ -2,7 +2,7 @@
   "products": [
     {
       "title": "title1",
-      "price": "price1",
+      "price": 120,
       "id": "0",
       "favourite": false,
       "cart": false,
@@ -10,7 +10,7 @@
     },
     {
       "title": "title2",
-      "price": "price2",
+      "price": 5,
       "id": "1",
       "favourite": false,
       "cart": false,
@@ -18,7 +18,7 @@
     },
     {
       "title": "title3",
-      "price": "price3",
+      "price": 9,
       "id": "2",
       "favourite": false,
       "cart": false,
@@ -26,7 +26,7 @@
     },
     {
       "title": "title4",
-      "price": "price4",
+      "price": 321,
       "id": "3",
       "favourite": false,
       "cart": false,
